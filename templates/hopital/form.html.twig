@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>{% if form.vars.value.id %}Modifier{% else %}Ajouter{% endif %} un Hôpital</h1>
+
+    {{ form_start(form) }}
+        {{ form_row(form.nom) }}
+        {{ form_row(form.dateFabrication) }}
+        <button type="submit">{{ form.vars.value.id ? 'Mettre à jour' : 'Enregistrer' }}</button>
+    {{ form_end(form) }}
+{% endblock %}

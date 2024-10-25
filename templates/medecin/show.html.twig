@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Détails du Médecin</h1>
+
+    <table>
+        <tr>
+            <th>Nom :</th>
+            <td>{{ medecin.nom }}</td>
+        </tr>
+        <tr>
+            <th>Date de Naissance :</th>
+            <td>{{ medecin.dateNaissance|date('Y-m-d') }}</td>
+        </tr>
+        <tr>
+            <th>Hôpital :</th>
+            <td>{{ medecin.hopital.nom }}</td>
+        </tr>
+    </table>
+
+    <a href="{{ path('app_medecin_edit', {id: medecin.id}) }}">Modifier</a> |
+    <a href="{{ path('app_medecin_index') }}">Retour à la liste</a>
+{% endblock %}

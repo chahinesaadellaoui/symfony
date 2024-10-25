@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Détails de l'Hôpital</h1>
+
+    <table>
+        <tr>
+            <th>Nom :</th>
+            <td>{{ hopital.nom }}</td>
+        </tr>
+        <tr>
+            <th>Date de Fabrication :</th>
+            <td>{{ hopital.dateFabrication|date('Y-m-d') }}</td>
+        </tr>
+        <tr>
+            <th>Médecins :</th>
+            <td>
+                <ul>
+                    {% for medecin in hopital.medecins %}
+                        <li>{{ medecin.nom }} ({{ medecin.dateNaissance|date('Y-m-d') }})</li>
+                    {% else %}
+                        <li>Aucun médecin</li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+    </table>
+
+    <a href="{{ path('app_hopital_edit', {id: hopital.id}) }}">Modifier</a> |
+    <a href="{{ path('app_hopital_index') }}">Retour à la liste</a>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Liste des Médecins</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Date de Naissance</th>
+                <th>Hôpital</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for medecin in medecins %}
+                <tr>
+                    <td>{{ medecin.nom }}</td>
+                    <td>{{ medecin.dateNaissance|date('Y-m-d') }}</td>
+                    <td>{{ medecin.hopital.nom }}</td>
+                    <td>
+                        <a href="{{ path('app_medecin_show', {id: medecin.id}) }}">Détails</a> |
+                        <a href="{{ path('app_medecin_edit', {id: medecin.id}) }}">Modifier</a> |
+                        <form action="{{ path('app_medecin_delete', {id: medecin.id}) }}" method="post" style="display:inline;">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ medecin.id) }}">
+                            <button type="submit">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">Aucun médecin trouvé</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('app_medecin_new') }}">Ajouter un nouveau Médecin</a>
+{% endblock %}

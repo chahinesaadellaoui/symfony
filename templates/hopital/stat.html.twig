@@ -1,0 +1,23 @@
+{# templates/hopital/stats.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Nombre de Médecins par Hôpital</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nom de l'Hôpital</th>
+                <th>Nombre de Médecins</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for hopital in hopitalStats %}
+                <tr>
+                    <td>{{ hopital.hopitalNom }}</td>
+                    <td>{{ hopital.nombreMedecins }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
